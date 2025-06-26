@@ -9,242 +9,62 @@
     :root {
       --primary: #2a91e9;
       --primary-dark: #1a7bc8;
-      --accent: #FF6B00; /* Ethiopian orange */
+      --accent: #FF6B00;
       --text: #333333;
       --light-gray: #f5f7fa;
       --border: #e1e5eb;
-      --error: #e74c3c;
+      --secondary-btn: #6c757d;
     }
-    
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    }
-    
-    body {
-      background-color: var(--light-gray);
-      color: var(--text);
-      line-height: 1.6;
-    }
-    
-    .container {
-      padding: 16px;
-      max-width: 100%;
-    }
-    
-    .header {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    
-    .logo {
-      width: 120px;
-      height: 120px;
-      margin: 0 auto 10px;
-      background-color: var(--accent);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 24px;
-      font-weight: bold;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    
-    .app-name {
-      color: var(--accent);
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-    
-    .tagline {
-      color: var(--text);
-      font-size: 14px;
-      opacity: 0.8;
-    }
-    
-    .form-header {
-      background-color: white;
-      padding: 16px;
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      display: flex;
-      align-items: center;
-    }
-    
-    .back-btn {
-      margin-right: 12px;
-      color: var(--primary);
-      font-weight: bold;
-      background: none;
-      border: none;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    
-    .form-title {
-      font-size: 18px;
-      font-weight: 600;
-    }
-    
-    .form-card {
-      background-color: white;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 16px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    }
-    
-    .form-group {
-      margin-bottom: 20px;
-      position: relative;
-    }
-    
-    .form-label {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 14px;
-      font-weight: 500;
-    }
-    
-    .required:after {
-      content: " *";
-      color: var(--error);
-    }
-    
-    .form-control {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      font-size: 15px;
-      transition: border-color 0.2s;
-    }
-    
-    .form-control:focus {
-      outline: none;
-      border-color: var(--primary);
-    }
-    
-    .error-message {
-      color: var(--error);
-      font-size: 12px;
-      margin-top: 4px;
-      display: none;
-    }
-    
-    .btn {
-      display: block;
-      width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    
-    .btn-primary {
-      background-color: var(--primary);
-      color: white;
-    }
-    
-    .btn-accent {
-      background-color: var(--accent);
-      color: white;
-    }
-    
-    .hidden {
-      display: none;
-    }
-    
-    .success-message, .placeholder-content {
-      text-align: center;
-      padding: 40px 20px;
-    }
-    
-    .success-icon {
-      font-size: 48px;
-      color: var(--primary);
-      margin-bottom: 16px;
-    }
-    
-    .dashboard-card {
-      background: white;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      text-align: center;
-    }
+    body, html { font-family: 'Segoe UI', Roboto, sans-serif; background-color: var(--light-gray); color: var(--text); margin: 0; padding: 0; }
+    .container { padding: 16px; max-width: 100%; }
+    .header { text-align: center; margin-bottom: 20px; }
+    .logo { width: 100px; height: 100px; margin: 0 auto 10px; background-color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; font-weight: bold; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    .app-name { color: var(--accent); font-size: 24px; font-weight: bold; }
+    .tagline { font-size: 14px; opacity: 0.8; }
+    .form-header { background-color: white; padding: 16px; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; display: flex; align-items: center; }
+    .back-btn { margin-right: 12px; color: var(--primary); font-weight: bold; background: none; border: none; font-size: 16px; cursor: pointer; }
+    .form-title { font-size: 18px; font-weight: 600; }
+    .form-card { background-color: white; border-radius: 12px; padding: 20px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .btn { display: block; width: 100%; padding: 14px; border: none; border-radius: 8px; font-size: 16px; font-weight: 500; cursor: pointer; transition: background-color 0.2s; }
+    .btn-primary { background-color: var(--primary); color: white; }
+    .btn-accent { background-color: var(--accent); color: white; }
+    .btn-secondary { background-color: var(--secondary-btn); color: white; } /* NEW STYLE */
+    .hidden { display: none; }
+    .placeholder-content { text-align: center; padding: 40px 20px; color: #666; }
+    /* NEW: Styles for the listing item */
+    .listing-item { border: 1px solid var(--border); padding: 15px; border-radius: 8px; margin-bottom: 10px; }
+    .listing-item h4 { margin: 0 0 5px 0; color: var(--primary); }
+    .listing-item p { margin: 0; font-size: 14px; }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- App Header (visible on all screens) -->
-    <div class="header">
-      <div class="logo">AHE</div>
-      <div class="app-name">Addis Home ET</div>
-      <div class="tagline">Premium Property Network</div>
-    </div>
+    <div class="header"><div class="logo">AHE</div><div class="app-name">Addis Home ET</div><div class="tagline">Premium Property Network</div></div>
     
-    <!-- Broker Dashboard -->
     <div id="dashboard-screen" class="hidden">
-      <div class="dashboard-card">
-        <h3>Welcome back, <span id="broker-name"></span>!</h3>
-        <p>Manage your property listings</p>
-      </div>
+      <div class="form-card" style="text-align: center;"><h3>Welcome back, <span id="broker-name"></span>!</h3><p>Manage your property listings</p></div>
       <div class="form-card">
         <button id="new-listing-btn" class="btn btn-accent" style="margin-bottom: 16px;">➕ New Listing</button>
-        <button id="my-listings-btn" class="btn btn-primary">📋 My Listings</button>
+        <button id="my-listings-btn" class="btn btn-primary" style="margin-bottom: 16px;">📋 My Listings</button>
+        <button id="close-app-btn" class="btn btn-secondary">🚪 Close</button>
       </div>
     </div>
     
-    <!-- Listing Form -->
     <div id="listing-form-screen" class="hidden">
-      <div class="form-header">
-        <button class="back-btn" id="listing-form-back">← Back</button>
-        <h1 class="form-title">🏠 New Property Listing</h1>
-      </div>
+      <div class="form-header"><button class="back-btn" id="listing-form-back">← Back</button><h1 class="form-title">New Property Listing</h1></div>
       <div class="form-card">
-        <!-- Form fields are unchanged -->
-        <div class="form-group"><label for="title" class="form-label required">Property Title</label><input type="text" id="title" class="form-control" placeholder="e.g., 3BR Luxury Apartment in Bole" required><div class="error-message" id="title-error">Please enter a title</div></div>
-        <div class="form-group"><label class="form-label required">Listing Type</label><div><label><input type="radio" name="type" value="sale" checked> For Sale</label><label style="margin-left:16px"><input type="radio" name="type" value="rent"> For Rent</label></div></div>
-        <div class="form-group"><label for="property-type" class="form-label required">Property Type</label><select id="property-type" class="form-control" required><option value="" disabled selected>Select property type</option><option value="apartment">Apartment</option><option value="villa">Villa</option><option value="condominium">Condominium</option></select><div class="error-message" id="type-error">Please select a property type</div></div>
-        <div class="form-group"><label for="price" class="form-label required">Price (ETB)</label><input type="number" id="price" class="form-control" min="0" required><div class="error-message" id="price-error">Please enter a valid price</div></div>
-        <div class="form-group"><label for="location" class="form-label required">Location</label><input type="text" id="location" class="form-control" placeholder="e.g., Bole, Addis Ababa" required><div class="error-message" id="location-error">Please enter location</div></div>
-        <button id="submit-listing" class="btn btn-accent">Publish Listing</button>
+        <div class="form-group"><label for="title">Property Title</label><input type="text" id="title" class="form-control" placeholder="e.g., 3BR Luxury Apartment"></div>
+        <div class="form-group"><label for="price">Price (ETB)</label><input type="number" id="price" class="form-control" min="0"></div>
+        <div class="form-group"><label for="location">Location</label><input type="text" id="location" class="form-control" placeholder="e.g., Bole, Addis Ababa"></div>
+        <button id="submit-listing-btn" class="btn btn-accent">Publish Listing</button>
       </div>
     </div>
 
-    <!-- NEW: My Listings Screen -->
     <div id="my-listings-screen" class="hidden">
-      <div class="form-header">
-         <h1 class="form-title">📋 My Listings</h1>
-      </div>
+      <div class="form-header"><h1 class="form-title">📋 My Listings</h1></div>
       <div class="form-card">
-        <div class="placeholder-content">
-          <p>You have no active listings yet.</p>
-          <p style="font-size: 14px; color: #666;">(Functionality coming soon)</p>
-        </div>
-        <button id="listings-back-btn" class="btn btn-primary">← Back to Dashboard</button>
-      </div>
-    </div>
-    
-    <!-- Success Message -->
-    <div id="listing-success-screen" class="hidden">
-      <div class="success-message">
-        <div class="success-icon">✓</div>
-        <h2>Listing Submitted!</h2>
-        <p>Your property has been successfully listed.</p>
-        <button id="return-to-dashboard-btn" class="btn btn-accent" style="margin-top: 20px;">Return to Dashboard</button>
+        <div id="listings-list-container"></div>
+        <button id="listings-back-btn" class="btn btn-primary" style="margin-top: 20px;">← Back to Dashboard</button>
       </div>
     </div>
   </div>
@@ -256,95 +76,96 @@
       tg.enableClosingConfirmation();
 
       let currentBrokerData = null;
+      const CLOUD_STORAGE_KEY = 'addisHomeListings';
 
-      function getQueryParams() {
-          const params = {};
-          window.location.search.substring(1).split("&").forEach(pair => {
-              const [key, value] = pair.split("=");
-              if (key) params[key] = decodeURIComponent(value.replace(/\+/g, " "));
-          });
-          return params;
-      }
-      
       function showScreen(screenId) {
-        ['dashboard-screen', 'listing-form-screen', 'my-listings-screen', 'listing-success-screen'].forEach(id => {
+        ['dashboard-screen', 'listing-form-screen', 'my-listings-screen'].forEach(id => {
           document.getElementById(id).classList.add('hidden');
         });
-        if (screenId) {
-          document.getElementById(screenId).classList.remove('hidden');
+        document.getElementById(screenId).classList.remove('hidden');
+      }
+
+      function renderMyListings(listings) {
+        const container = document.getElementById('listings-list-container');
+        container.innerHTML = ''; // Clear previous content
+        if (!listings || listings.length === 0) {
+          container.innerHTML = '<div class="placeholder-content"><p>You have no active listings yet.</p></div>';
+        } else {
+          listings.forEach(item => {
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'listing-item';
+            itemDiv.innerHTML = `<h4>${item.title || 'No Title'}</h4><p><strong>Price:</strong> ${item.price ? item.price.toLocaleString() : 'N/A'} ETB</p><p><strong>Location:</strong> ${item.location || 'N/A'}</p>`;
+            container.appendChild(itemDiv);
+          });
         }
-      }
-
-      function showDashboard() {
-        if (currentBrokerData) {
-          document.getElementById('broker-name').textContent = currentBrokerData.fullName.split(' ')[0];
-        }
-        showScreen('dashboard-screen');
-      }
-
-      function showListingForm() {
-        showScreen('listing-form-screen');
-      }
-
-      // NEW function to show the "My Listings" screen
-      function showMyListings() {
-        showScreen('my-listings-screen');
-      }
-
-      function showListingSuccess() {
-        showScreen('listing-success-screen');
-      }
-
-      function validateListing() {
-        // Validation logic remains the same
-        let isValid = true;
-        [{id:'title',e:'title-error'},{id:'property-type',e:'type-error'},{id:'price',e:'price-error'},{id:'location',e:'location-error'}].forEach(f=>{
-            const el=document.getElementById(f.id),err=document.getElementById(f.e);
-            if(el.value.trim()===''){err.style.display='block';isValid=false;}else{err.style.display='none';}
-        });
-        return !!isValid;
       }
 
       // --- Event Listeners ---
-      document.getElementById('new-listing-btn').addEventListener('click', showListingForm);
-      document.getElementById('listing-form-back').addEventListener('click', showDashboard);
-      
-      // MODIFIED: This now calls the new function instead of an alert
-      document.getElementById('my-listings-btn').addEventListener('click', showMyListings);
-      // NEW: Listener for the back button on the "My Listings" screen
-      document.getElementById('listings-back-btn').addEventListener('click', showDashboard);
+      document.getElementById('new-listing-btn').addEventListener('click', () => showScreen('listing-form-screen'));
+      document.getElementById('listing-form-back').addEventListener('click', () => showScreen('dashboard-screen'));
+      document.getElementById('listings-back-btn').addEventListener('click', () => showScreen('dashboard-screen'));
+      document.getElementById('close-app-btn').addEventListener('click', () => tg.close());
 
-      document.getElementById('submit-listing').addEventListener('click', () => {
-        if (validateListing()) {
-          const listing = { title: document.getElementById('title').value, type: document.querySelector('input[name="type"]:checked').value, propertyType: document.getElementById('property-type').value, price: parseInt(document.getElementById('price').value), location: document.getElementById('location').value, broker: currentBrokerData };
-          tg.sendData(JSON.stringify({ action: 'new_listing', data: listing }));
-          showListingSuccess();
-        }
+      document.getElementById('my-listings-btn').addEventListener('click', () => {
+        tg.CloudStorage.getItem(CLOUD_STORAGE_KEY, (err, value) => {
+          if (err) { alert('Error fetching listings: ' + err); return; }
+          const listings = value ? JSON.parse(value) : [];
+          renderMyListings(listings);
+          showScreen('my-listings-screen');
+        });
       });
-      
-      document.getElementById('return-to-dashboard-btn').addEventListener('click', showDashboard);
+
+      document.getElementById('submit-listing-btn').addEventListener('click', () => {
+        const newListing = {
+          id: 'listing_' + Date.now(),
+          title: document.getElementById('title').value,
+          price: document.getElementById('price').value,
+          location: document.getElementById('location').value,
+        };
+
+        if (!newListing.title || !newListing.price || !newListing.location) {
+          alert('Please fill all fields.');
+          return;
+        }
+
+        tg.CloudStorage.getItem(CLOUD_STORAGE_KEY, (err, value) => {
+          if (err) { alert('Error saving listing: ' + err); return; }
+          let listings = value ? JSON.parse(value) : [];
+          listings.push(newListing);
+          tg.CloudStorage.setItem(CLOUD_STORAGE_KEY, JSON.stringify(listings), (err, success) => {
+            if (err) { alert('Failed to save listing to cloud: ' + err); return; }
+            if (success) {
+              tg.sendData(JSON.stringify({ action: 'new_listing', data: newListing }));
+              alert('Listing submitted successfully!');
+              document.getElementById('title').value = '';
+              document.getElementById('price').value = '';
+              document.getElementById('location').value = '';
+              showScreen('dashboard-screen');
+            }
+          });
+        });
+      });
 
       // --- App Initialization ---
       function initializeApp() {
-        const params = getQueryParams();
-
-        if (params.user_id && params.name) {
-            currentBrokerData = { telegramId: params.user_id, fullName: params.name, phone: params.phone || 'N/A' };
-            
-            // MODIFIED: Check the URL hash to route to the correct screen on load
-            const hash = window.location.hash;
-            if (hash === '#listings') {
-                showMyListings();
-            } else if (hash === '#new_listing') {
-                showListingForm();
-            } else {
-                showDashboard(); // Default screen
-            }
+        const params = new URLSearchParams(window.location.search);
+        const name = params.get('name');
+        if (name) {
+          currentBrokerData = { fullName: name };
+          document.getElementById('broker-name').textContent = name.split(' ')[0];
+          
+          const hash = window.location.hash.substring(1);
+          if (hash === 'listings') {
+            document.getElementById('my-listings-btn').click();
+          } else if (hash === 'new_listing') {
+            showScreen('listing-form-screen');
+          } else {
+            showScreen('dashboard-screen');
+          }
         } else {
-            document.body.innerHTML = '<div class="container" style="text-align:center; padding-top: 50px;"><h2>Access Denied</h2><p>Please access this portal through the AddisHome ET Telegram bot.</p></div>';
+          document.body.innerHTML = '<div style="text-align:center; padding-top: 50px;"><h2>Access Denied</h2><p>Please access this portal through the AddisHome ET Telegram bot.</p></div>';
         }
       }
-      
       initializeApp();
     });
   </script>
