@@ -13,6 +13,7 @@
       --text: #333333;
       --light-gray: #f5f7fa;
       --border: #e1e5eb;
+      --error: #e74c3c;
       --secondary-btn: #6c757d;
     }
     body, html { font-family: 'Segoe UI', Roboto, sans-serif; background-color: var(--light-gray); color: var(--text); margin: 0; padding: 0; }
@@ -25,16 +26,20 @@
     .back-btn { margin-right: 12px; color: var(--primary); font-weight: bold; background: none; border: none; font-size: 16px; cursor: pointer; }
     .form-title { font-size: 18px; font-weight: 600; }
     .form-card { background-color: white; border-radius: 12px; padding: 20px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .form-group { margin-bottom: 20px; }
+    .form-label { display: block; margin-bottom: 8px; font-weight: 500; }
+    .required:after { content: " *"; color: var(--error); }
+    .form-control { width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 15px; box-sizing: border-box; }
+    .error-message { color: var(--error); font-size: 12px; margin-top: 4px; display: none; }
     .btn { display: block; width: 100%; padding: 14px; border: none; border-radius: 8px; font-size: 16px; font-weight: 500; cursor: pointer; transition: background-color 0.2s; }
     .btn-primary { background-color: var(--primary); color: white; }
     .btn-accent { background-color: var(--accent); color: white; }
-    .btn-secondary { background-color: var(--secondary-btn); color: white; } /* NEW STYLE */
+    .btn-secondary { background-color: var(--secondary-btn); color: white; }
     .hidden { display: none; }
     .placeholder-content { text-align: center; padding: 40px 20px; color: #666; }
-    /* NEW: Styles for the listing item */
     .listing-item { border: 1px solid var(--border); padding: 15px; border-radius: 8px; margin-bottom: 10px; }
     .listing-item h4 { margin: 0 0 5px 0; color: var(--primary); }
-    .listing-item p { margin: 0; font-size: 14px; }
+    .listing-item p { margin: 0 0 4px 0; font-size: 14px; }
   </style>
 </head>
 <body>
@@ -53,9 +58,16 @@
     <div id="listing-form-screen" class="hidden">
       <div class="form-header"><button class="back-btn" id="listing-form-back">← Back</button><h1 class="form-title">New Property Listing</h1></div>
       <div class="form-card">
-        <div class="form-group"><label for="title">Property Title</label><input type="text" id="title" class="form-control" placeholder="e.g., 3BR Luxury Apartment"></div>
-        <div class="form-group"><label for="price">Price (ETB)</label><input type="number" id="price" class="form-control" min="0"></div>
-        <div class="form-group"><label for="location">Location</label><input type="text" id="location" class="form-control" placeholder="e.g., Bole, Addis Ababa"></div>
+        <div class="form-group"><label for="title" class="form-label required">Property Title</label><input type="text" id="title" class="form-control" placeholder="e.g., 3BR Luxury Apartment"><div class="error-message" id="title-error">Please enter a title</div></div>
+        <div class="form-group"><label class="form-label required">Listing Type</label><div><label><input type="radio" name="type" value="sale" checked> For Sale</label><label style="margin-left:16px"><input type="radio" name="type" value="rent"> For Rent</label></div></div>
+        <div class="form-group"><label for="property-type" class="form-label required">Property Type</label><select id="property-type" class="form-control"><option value="" disabled selected>Select a type...</option><option value="Apartment">Apartment</option><option value="Villa">Villa</option><option value="Condominium">Condominium</option><option value="Commercial">Commercial</option></select><div class="error-message" id="property-type-error">Please select a property type</div></div>
+        <div style="display: flex; gap: 16px;">
+          <div class="form-group" style="flex: 1;"><label for="bedrooms" class="form-label required">Bedrooms</label><input type="number" id="bedrooms" class="form-control" min="0"><div class="error-message" id="bedrooms-error">Required</div></div>
+          <div class="form-group" style="flex: 1;"><label for="bathrooms" class="form-label required">Bathrooms</label><input type="number" id="bathrooms" class="form-control" min="0"><div class="error-message" id="bathrooms-error">Required</div></div>
+        </div>
+        <div class="form-group"><label for="price" class="form-label required">Price (ETB)</label><input type="number" id="price" class="form-control" min="0"><div class="error-message" id="price-error">Please enter a valid price</div></div>
+        <div class="form-group"><label for="location" class="form-label required">Location</label><input type="text" id="location" class="form-control" placeholder="e.g., Bole, Addis Ababa"><div class="error-message" id="location-error">Please enter a location</div></div>
+        <div class="form-group"><label for="description" class="form-label">Description (Optional)</label><textarea id="description" class="form-control" rows="4"></textarea></div>
         <button id="submit-listing-btn" class="btn btn-accent">Publish Listing</button>
       </div>
     </div>
@@ -87,17 +99,69 @@
 
       function renderMyListings(listings) {
         const container = document.getElementById('listings-list-container');
-        container.innerHTML = ''; // Clear previous content
+        container.innerHTML = '';
         if (!listings || listings.length === 0) {
-          container.innerHTML = '<div class="placeholder-content"><p>You have no active listings yet.</p></div>';
+          container.innerHTML = '<div class="placeholder-content"><p>You have no listings yet.</p></div>';
         } else {
           listings.forEach(item => {
             const itemDiv = document.createElement('div');
             itemDiv.className = 'listing-item';
-            itemDiv.innerHTML = `<h4>${item.title || 'No Title'}</h4><p><strong>Price:</strong> ${item.price ? item.price.toLocaleString() : 'N/A'} ETB</p><p><strong>Location:</strong> ${item.location || 'N/A'}</p>`;
+            itemDiv.innerHTML = `
+              <h4>${item.title || 'No Title'} (${item.propertyType || 'N/A'})</h4>
+              <p><strong>Details:</strong> ${item.bedrooms || 'N/A'} Bed, ${item.bathrooms || 'N/A'} Bath</p>
+              <p><strong>Price:</strong> ${item.price ? parseInt(item.price).toLocaleString() : 'N/A'} ETB</p>
+              <p><strong>Location:</strong> ${item.location || 'N/A'}</p>
+            `;
             container.appendChild(itemDiv);
           });
         }
+      }
+      
+      function validateAndGetData() {
+        let isValid = true;
+        const fields = [
+          {id: 'title', errorId: 'title-error'},
+          {id: 'property-type', errorId: 'property-type-error'},
+          {id: 'bedrooms', errorId: 'bedrooms-error'},
+          {id: 'bathrooms', errorId: 'bathrooms-error'},
+          {id: 'price', errorId: 'price-error'},
+          {id: 'location', errorId: 'location-error'}
+        ];
+
+        fields.forEach(field => {
+          const input = document.getElementById(field.id);
+          const errorDiv = document.getElementById(field.errorId);
+          if (!input.value) {
+            errorDiv.style.display = 'block';
+            isValid = false;
+          } else {
+            errorDiv.style.display = 'none';
+          }
+        });
+        
+        if (!isValid) return null;
+
+        return {
+          id: 'listing_' + Date.now(),
+          title: document.getElementById('title').value,
+          type: document.querySelector('input[name="type"]:checked').value,
+          propertyType: document.getElementById('property-type').value,
+          bedrooms: document.getElementById('bedrooms').value,
+          bathrooms: document.getElementById('bathrooms').value,
+          price: document.getElementById('price').value,
+          location: document.getElementById('location').value,
+          description: document.getElementById('description').value,
+        };
+      }
+      
+      function resetForm() {
+          document.getElementById('title').value = '';
+          document.getElementById('property-type').value = '';
+          document.getElementById('bedrooms').value = '';
+          document.getElementById('bathrooms').value = '';
+          document.getElementById('price').value = '';
+          document.getElementById('location').value = '';
+          document.getElementById('description').value = '';
       }
 
       // --- Event Listeners ---
@@ -109,22 +173,15 @@
       document.getElementById('my-listings-btn').addEventListener('click', () => {
         tg.CloudStorage.getItem(CLOUD_STORAGE_KEY, (err, value) => {
           if (err) { alert('Error fetching listings: ' + err); return; }
-          const listings = value ? JSON.parse(value) : [];
-          renderMyListings(listings);
+          renderMyListings(value ? JSON.parse(value) : []);
           showScreen('my-listings-screen');
         });
       });
 
       document.getElementById('submit-listing-btn').addEventListener('click', () => {
-        const newListing = {
-          id: 'listing_' + Date.now(),
-          title: document.getElementById('title').value,
-          price: document.getElementById('price').value,
-          location: document.getElementById('location').value,
-        };
-
-        if (!newListing.title || !newListing.price || !newListing.location) {
-          alert('Please fill all fields.');
+        const newListing = validateAndGetData();
+        if (!newListing) {
+          alert('Please fill all required fields.');
           return;
         }
 
@@ -137,16 +194,13 @@
             if (success) {
               tg.sendData(JSON.stringify({ action: 'new_listing', data: newListing }));
               alert('Listing submitted successfully!');
-              document.getElementById('title').value = '';
-              document.getElementById('price').value = '';
-              document.getElementById('location').value = '';
+              resetForm();
               showScreen('dashboard-screen');
             }
           });
         });
       });
 
-      // --- App Initialization ---
       function initializeApp() {
         const params = new URLSearchParams(window.location.search);
         const name = params.get('name');
